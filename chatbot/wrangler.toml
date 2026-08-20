@@ -1,0 +1,6 @@
+name = "assistant-portfolio"
+main = "worker.js"
+compatibility_date = "2025-01-01"
+
+# La clé n'est jamais écrite ici. Elle se pose avec :
+#   wrangler secret put ANTHROPIC_API_KEY
