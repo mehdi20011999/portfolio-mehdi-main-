@@ -5,16 +5,16 @@
    ========================================================= */
 
 const CONFIG = {
-  github: "votre-pseudo",           // <- ton pseudo GitHub, sans l'URL
+  github: "mehdi20011999",           // <- ton pseudo GitHub, sans l'URL
   flagshipRepo: "sonda",            // projet principal (SONDA)
-  saqiRepo: "saqi",                 // projet d'intérêt général (SAQI)
+  saqiRepo: "",                     // projet d'intérêt général (SAQI)
   repos: [
-    "camera-intelligente",          // P-01
-    "django-ci-cd",                 // P-02
-    "bayan",                        // P-03
-    "vision-api",                   // P-04
-    "stm32-i2c-driver",             // P-05
-    "rassad",                       // P-06
+    "",          // P-01
+    "",                 // P-02
+    "",                        // P-03
+    "",                   // P-04
+    "",             // P-05
+    "",                       // P-06
     "ayn-fpga"                      // P-07
   ],
   demos: [
@@ -65,7 +65,7 @@ const CONFIG = {
 
   const saqi = document.querySelector("[data-saqi-repo]");
   if (saqi) {
-    saqi.href = (CONFIG.github !== "votre-pseudo") ? base + "/" + CONFIG.saqiRepo : base;
+    saqi.href = (CONFIG.github !== "votre-pseudo" && CONFIG.saqiRepo) ? base + "/" + CONFIG.saqiRepo : base;
     saqi.target = "_blank";
     saqi.rel = "noopener";
   }

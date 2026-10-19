@@ -21,7 +21,7 @@
    ========================================================= */
 
 const ORIGINES_AUTORISEES = [
-  "https://votre-pseudo.github.io"   // ← remplace par ton domaine exact
+  "https://portfolio-mehdi-main.vercel.app"   // ← remplace par ton domaine exact
 ];
 
 const PROFIL = `
