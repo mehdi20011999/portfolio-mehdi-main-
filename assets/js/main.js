@@ -5,27 +5,20 @@
    ========================================================= */
 
 const CONFIG = {
-  github: "mehdi20011999",           // <- ton pseudo GitHub, sans l'URL
+  github: "mehdi20011999",          // <- ton pseudo GitHub, sans l'URL
   flagshipRepo: "sonda",            // projet principal (SONDA)
   saqiRepo: "",                     // projet d'intérêt général (SAQI)
   repos: [
-    "",          // P-01
-    "",                 // P-02
-    "",                        // P-03
-    "",                   // P-04
-    "",             // P-05
-    "",                       // P-06
-    "ayn-fpga"                      // P-07
+    "",                // P-01 caméra intelligente
+    "",                // P-02 plateforme Django
+    "",                // P-03 BAYAN
+    "",                // P-04 pilote STM32
+    "",                // P-05 RASSAD
+    "ayn-fpga"         // P-06 AYN
   ],
-  demos: [
-    "",                             // P-01 : pas de démo
-    "",                             // P-02 : ex. "https://mon-app.onrender.com"
-    "",                             // P-03
-    "",                             // P-04
-    "",                             // P-05
-    "",                             // P-06
-    ""                              // P-07
-  ]
+  demos: ["", "", "", "", "", ""]
+  // Les 4 réalisations publiques (routeur VoIP, assistant IA, API Plantes,
+  // labo réseau) ont leurs liens directement dans index.html.
 };
 
 /* ---------- liens vers les dépôts ---------- */
@@ -116,7 +109,7 @@ const CONFIG = {
 /* ---------- révélation au défilement ---------- */
 
 (function reveal(){
-  const targets = document.querySelectorAll(".sec-head, .card, .tl-item, .profil-grid, .chip, .contacts");
+  const targets = document.querySelectorAll(".sec-head, .card, .case, .pipeline, .tl-item, .profil-grid, .chip, .contacts");
   if (!("IntersectionObserver" in window)) return;
 
   targets.forEach(el => el.classList.add("reveal"));

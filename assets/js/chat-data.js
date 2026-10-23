@@ -75,9 +75,9 @@ window.CHAT_KB = {
 
     {
       id: "devops",
-      keywords: ["devops","docker","kubernetes","jenkins","cloud","aws","azure","gcp","google cloud","ci/cd","cicd","intégration continue","integration continue","pipeline","déploiement","deploiement","conteneur","container"],
-      fr: "Mehdi est certifié DevOps Essentials (IBM / Coursera, 2024) et pratique Docker, Kubernetes, Jenkins et les trois grands fournisseurs cloud. Dans ses projets, il met systématiquement en place une chaîne d'intégration continue : tests automatiques, construction de l'image et déploiement à chaque commit. Le pipeline est public sur ses dépôts GitHub, ce qui permet de vérifier plutôt que de croire sur parole.",
-      en: "Mehdi holds the DevOps Essentials certificate (IBM / Coursera, 2024) and works with Docker, Kubernetes, Jenkins and the three major cloud providers. In his projects he systematically sets up a continuous integration chain: automated tests, image build and deployment on every commit. The pipeline is public on his GitHub repositories, so it can be verified rather than taken on trust."
+      keywords: ["devops","workflow","workflows","livre","livrer","ship","github actions","docker","kubernetes","jenkins","cloud","aws","azure","gcp","google cloud","ci/cd","cicd","intégration continue","integration continue","pipeline","déploiement","deploiement","conteneur","container"],
+      fr: "Mehdi est certifié DevOps Essentials (IBM / Coursera, 2024) et pratique Docker, GitHub Actions et Linux au quotidien. Ses quatre projets publics suivent le même workflow : compilation stricte, tests unitaires et de bout en bout, analyse de sécurité (CodeQL), évaluation ou benchmark, puis publication sur tag. Le pipeline est public sur ses dépôts GitHub, ce qui permet de vérifier plutôt que de croire sur parole.",
+      en: "Mehdi holds the DevOps Essentials certificate (IBM / Coursera, 2024) and uses Docker, GitHub Actions and Linux daily. His four public projects follow the same workflow: strict build, unit and end-to-end tests, security analysis (CodeQL), evaluation or benchmark, then release on tag. The pipeline is public on his GitHub repositories, so it can be verified rather than taken on trust."
     },
 
     {
@@ -90,8 +90,36 @@ window.CHAT_KB = {
     {
       id: "projets",
       keywords: ["projets","projet","portfolio","réalisations","realisations","github","dépôt","depot","projects","project","portfolio work","repository","repo","code","built","made"],
-      fr: "Neuf projets. Deux principaux : SONDA, une plateforme SaaS de supervision de la chaîne du froid, et SAQI, une sonde d’irrigation en licence libre pour les petites exploitations. Puis le système de caméra intelligente (terminé), une plateforme Django conteneurisée avec CI/CD, BAYAN, une chaîne de données ouvertes marocaines, un modèle de vision servi en API, un pilote STM32 en C, RASSAD, une sonde de supervision réseau, et AYN, un accélérateur de traitement d'image sur FPGA. Faites défiler la page jusqu'à la section Projets pour le détail et les liens vers le code.",
-      en: "Nine projects. Two main ones: SONDA, a SaaS platform for cold-chain monitoring, and SAQI, an open-licence irrigation probe for smallholder farms. Then the smart camera system (completed), a containerised Django platform with CI/CD, BAYAN, a Moroccan open-data pipeline, a vision model served as an API, an STM32 driver in C, RASSAD, a network monitoring probe, and AYN, an FPGA image-processing accelerator. Scroll to the Projects section for details and links to the code."
+      fr: "Quatre réalisations publiques, chacune testée automatiquement à chaque commit par GitHub Actions : un routeur d'appels VoIP (FreeSWITCH, PostgreSQL, C), un assistant IA d'entreprise (RAG, FastAPI), une API qui sert un modèle d'IA (TensorFlow Lite, Docker) et un laboratoire réseau et sécurité (OSPF, pare-feu, VPN IPsec). À côté, des projets en conception ou en cours : SONDA (chaîne du froid), SAQI (irrigation), RASSAD, BAYAN, AYN et un pilote STM32. La section Projets donne les liens vers le code.",
+      en: "Four public projects, each tested automatically on every commit by GitHub Actions: a VoIP call router (FreeSWITCH, PostgreSQL, C), an enterprise AI assistant (RAG, FastAPI), an API serving an AI model (TensorFlow Lite, Docker) and a network and security lab (OSPF, firewall, IPsec VPN). Alongside them, projects in design or in progress: SONDA (cold chain), SAQI (irrigation), RASSAD, BAYAN, AYN and an STM32 driver. The Projects section links to the code."
+    },
+
+    {
+      id: "voip",
+      keywords: ["voip","freeswitch","sip","routeur","router","appel","appels","call","calls","did","télécom","telecom","asterisk"],
+      fr: "Le routeur d'appels VoIP fait passer chaque appel par S1, S2, S3, S2 puis S4 : vers le serveur intermédiaire, l'appel part sur un numéro temporaire (DID) ; au retour, le routeur retrouve l'appelant et la destination d'origine et libère le DID. L'attribution des DID se fait dans une fonction PostgreSQL atomique (FOR UPDATE SKIP LOCKED et index partiels) : environ 2 300 appels par seconde, sans jamais donner le même DID à deux appels. Le projet est écrit en C, Lua et SQL, avec 5 suites de tests dont un test SIP de bout en bout, et 8 diagrammes d'architecture.",
+      en: "The VoIP call router sends each call through S1, S2, S3, S2 then S4: towards the intermediate server the call travels on a temporary number (DID); on the way back the router restores the original caller and destination and frees the DID. DID allocation runs in an atomic PostgreSQL function (FOR UPDATE SKIP LOCKED and partial indexes): about 2,300 calls per second, never giving the same DID to two calls. Written in C, Lua and SQL, with 5 test suites including an end-to-end SIP test, and 8 architecture diagrams."
+    },
+
+    {
+      id: "assistant_ia",
+      keywords: ["assistant ia","rag","llm","chatgpt","ollama","openai","documents internes","entreprise","bm25","prompt","generative","générative","genai"],
+      fr: "L'assistant IA d'entreprise répond aux questions des salariés à partir des documents internes et cite ses sources. Le contrôle d'accès par rôle s'applique avant la recherche, les données personnelles sont masquées (loi 09-08), les tentatives d'injection de prompt sont bloquées et chaque question est journalisée de façon pseudonymisée. Il fonctionne avec un modèle local (Ollama) ou une API compatible OpenAI. Une évaluation de 29 questions tourne dans la CI et bloque toute modification qui fait baisser la qualité.",
+      en: "The enterprise AI assistant answers employees' questions from internal documents and cites its sources. Role-based access control is applied before retrieval, personal data is masked (Moroccan law 09-08), prompt-injection attempts are blocked and every question is logged pseudonymously. It runs with a local model (Ollama) or an OpenAI-compatible API. A 29-question evaluation runs in CI and blocks any change that lowers quality."
+    },
+
+    {
+      id: "api_plantes",
+      keywords: ["plantes","plante","feuille","api ia","fastapi","tflite","tensorflow lite","mlops","modèle en production","model serving"],
+      fr: "L'API Plantes sert un modèle de vision TensorFlow Lite derrière FastAPI : on envoie la photo d'une feuille, on reçoit les classes les plus probables. Le modèle est chargé une seule fois, les entrées sont validées, l'image Docker tourne sans droits root, et GitHub Actions lance les tests et construit l'image à chaque commit. Le modèle actuel est un modèle de démonstration ; l'infrastructure est prête pour un modèle entraîné sur les maladies des plantes.",
+      en: "The Plant API serves a TensorFlow Lite vision model behind FastAPI: send a photo of a leaf, get back the most likely classes. The model is loaded once, inputs are validated, the Docker image runs without root, and GitHub Actions runs the tests and builds the image on every commit. The current model is a demo model; the infrastructure is ready for one trained on plant diseases."
+    },
+
+    {
+      id: "labo_reseau",
+      keywords: ["labo","laboratoire","lab","réseau","reseau","ospf","ipsec","vpn","pare-feu","firewall","nftables","ccna","cisco","routage","network"],
+      fr: "Le laboratoire réseau et sécurité monte un réseau multi-sites complet sous Linux : routage OSPF authentifié avec lien de secours, pare-feu nftables et tunnel VPN IPsec (IKEv2) entre les sites. Des tests automatiques vérifient la connectivité, la bascule et le filtrage à chaque modification. Mehdi prépare aussi la certification CCNA.",
+      en: "The network and security lab builds a complete multi-site network on Linux: authenticated OSPF routing with a backup link, an nftables firewall and an IPsec (IKEv2) VPN tunnel between sites. Automated tests check connectivity, failover and filtering on every change. Mehdi is also preparing the CCNA certification."
     },
 
     {
@@ -195,8 +223,8 @@ window.CHAT_KB = {
     {
       id: "poste",
       keywords: ["cherche","recherche","poste recherché","type de poste","souhaite","objectif","looking for","seeking","want","ideal role","interested in"],
-      fr: "Il vise un poste où il peut tenir la chaîne complète : l'embarqué qui produit la donnée, le back-end qui la traite, le pipeline qui déploie l'ensemble. Les intitulés qui correspondent : développeur back-end Python/Django, ingénieur systèmes embarqués, ingénieur DevOps junior, ingénieur validation.",
-      en: "He is targeting a role where he can own the full chain: the embedded side producing the data, the back-end processing it, the pipeline shipping it. Matching titles: Python/Django back-end developer, embedded systems engineer, junior DevOps engineer, validation engineer."
+      fr: "Il vise un poste où il peut tenir un système de bout en bout. Les intitulés qui correspondent : administrateur ou technicien réseaux et systèmes, ingénieur VoIP / télécom, ingénieur DevOps junior, développeur Python / IA junior.",
+      en: "He is targeting a role where he can own a system end to end. Matching titles: network and systems administrator or technician, VoIP / telecom engineer, junior DevOps engineer, junior Python / AI developer."
     },
 
     {
@@ -219,8 +247,8 @@ window.CHAT_KB = {
   },
 
   suggestions: {
-    fr: ["Quel est son parcours ?","Quelles technologies maîtrise-t-il ?","Parlez-moi de SONDA","Et le projet SAQI ?","Pourquoi le recruter ?"],
-    en: ["What's his background?","Which technologies does he know?","Tell me about SONDA","What is SAQI?","Why hire him?"]
+    fr: ["Quel est son parcours ?","Parlez-moi du routeur VoIP","Et l'assistant IA ?","Comment livre-t-il son code ?","Pourquoi le recruter ?"],
+    en: ["What's his background?","Tell me about the VoIP router","What about the AI assistant?","How does he ship code?","Why hire him?"]
   },
 
   disclaimer: {

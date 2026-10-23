@@ -1,0 +1,52 @@
+name: Site
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  schedule:
+    - cron: '0 6 * * 1'   # chaque lundi : vérifie que les liens marchent toujours
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  qualite:
+    name: HTML, JavaScript et fichiers
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: HTML valide
+        run: npx --yes html-validate@8 index.html
+      - name: JavaScript sans erreur de syntaxe
+        run: for f in assets/js/*.js chatbot/*.js; do node --check "$f"; done
+      - name: Fichiers référencés présents (CV, images, documents)
+        run: |
+          missing=0
+          for f in $(grep -oE '(href|src)="assets/[^"]+"' index.html | sed -E 's/.*="(.*)"/\1/' | sort -u); do
+            [ -f "$f" ] || { echo "manquant : $f"; missing=1; }
+          done
+          exit $missing
+      - name: Poids de la page
+        run: |
+          size=$(du -cb index.html assets/css/*.css assets/js/*.js | tail -1 | cut -f1)
+          echo "HTML + CSS + JS : $((size / 1024)) Ko" >> "$GITHUB_STEP_SUMMARY"
+          [ "$size" -lt 300000 ]
+
+  liens:
+    name: Liens externes (GitHub, LinkedIn…)
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Vérifier les liens
+        uses: lycheeverse/lychee-action@v2
+        with:
+          args: >-
+            --no-progress --max-retries 2 --accept 200,204,429
+            --exclude linkedin.com --exclude fonts.googleapis.com --exclude fonts.gstatic.com
+            index.html
+          fail: true

@@ -1,9 +1,30 @@
 # Portfolio — Mehdi Ammou
 
+[![Site](https://github.com/mehdi20011999/portfolio-mehdi-main-/actions/workflows/site.yml/badge.svg)](https://github.com/mehdi20011999/portfolio-mehdi-main-/actions/workflows/site.yml)
+
+En ligne : https://portfolio-mehdi-main.vercel.app
+
+## Workflow de vérification (GitHub Actions)
+
+À chaque push, et chaque lundi, `.github/workflows/site.yml` vérifie le site :
+
+| Étape | Ce qui est vérifié |
+|---|---|
+| HTML valide | `html-validate` sur `index.html` (règles dans `.htmlvalidate.json`) |
+| JavaScript | `node --check` sur chaque script |
+| Fichiers présents | chaque CV, image ou document référencé existe bien |
+| Poids de la page | HTML + CSS + JS sous 300 Ko |
+| Liens externes | `lychee` vérifie les liens GitHub et autres (LinkedIn exclu : il bloque les robots) |
+
+Les cartes « Réalisations publiques » affichent en direct le badge CI de chaque projet
+(routeur VoIP, assistant IA, API Plantes, labo réseau).
+
 Site personnel statique : HTML, CSS et JavaScript, sans dépendance ni build.
 Il se publie directement sur GitHub Pages.
 
-**Contenu** : profil, deux projets phares (SONDA et SAQI), 5 projets secondaires, compétences
+**Contenu** : profil, 4 réalisations publiques testées en CI (routeur VoIP, assistant IA,
+API Plantes, labo réseau) avec leur workflow, deux projets en conception (SONDA et SAQI),
+6 projets secondaires, compétences
 (brochage de composant), parcours, contact, assistant de questions-réponses, bascule
 français / anglais, CV et cahier des charges en téléchargement.
 
